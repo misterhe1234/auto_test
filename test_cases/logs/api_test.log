@@ -1,0 +1,2 @@
+2025-02-05 17:21:15,853 - api_test - INFO - Request: GET https://api.example.com/users
+2025-02-05 17:21:16,612 - api_test - ERROR - Request failed: HTTPSConnectionPool(host='api.example.com', port=443): Max retries exceeded with url: /users?page=1 (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x106cb88e0>: Failed to resolve 'api.example.com' ([Errno 8] nodename nor servname provided, or not known)"))

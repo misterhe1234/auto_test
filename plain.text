@@ -1,0 +1,15 @@
+project/
+├── api/                    # 接口层
+│   ├── __init__.py
+│   └── client.py          # HTTP 客户端类
+├── test_cases/            # 测试用例
+│   └── test_demo.py
+├── config/                # 配置文件
+│   └── settings.py
+├── utils/                 # 工具类
+│   ├── __init__.py
+│   ├── logger.py          # 日志工具
+│   └── assertion.py       # 断言工具
+├── data/                  # 测试数据（JSON/YAML）
+├── reports/               # 测试报告
+└── run.py                 # 主运行入口
