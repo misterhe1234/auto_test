@@ -39,7 +39,7 @@ class HttpRequest:
     def __init__(
         self,
         path: str,
-        method: str = "get",
+        method: str = None,
         headers: dict = None,
         cookies: dict = None,
         data: dict = None,

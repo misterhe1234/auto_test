@@ -4,12 +4,12 @@ from config import CONFIG
 @pytest.fixture(scope="session")
 def prod_headers():
     """生成全局 headers（含 token 和 cookie）"""
-    token = CONFIG["test_env"]["token"]
+    token = CONFIG["test_env"]["x-csrf-toke"]
     cookie = CONFIG["test_env"]["cookie"]
     yield {
-        "Authorization": f"Bearer {token}",
+        "x-csrf-token": token,
         "Cookie": cookie,
-        "Content-Type": "application/json"
+        "Content-Type": "application/json;charset=UTF-8"
     }
 
 @pytest.fixture(autouse=True)

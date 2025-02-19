@@ -1,4 +1,4 @@
-# tests/test_user.py
+# tests/test_query_policy.py
 # import pytest
 # from api.user_api import UserApi
 #
@@ -22,7 +22,7 @@ import pytest
 import yaml
 
 import config
-from api.user_api import UserAPI
+from api.product_api import UserAPI
 from conftest import prod_headers
 
 
@@ -31,23 +31,15 @@ def load_user_data():
     with open("../data/user_data.yaml", "r") as f:
         return yaml.safe_load(f)
 
-class TestUser:
-    @pytest.mark.parametrize("case", load_user_data()["login_data"])
-    def test_login(self, case):
-        """测试登录接口"""
-        user_api = UserAPI(base_url=config.CONFIG["test_env"]["base_url"])
-        response = user_api.login(
-            username=case["username"],
-            password=case["password"]
-        ).execute()
-        assert response.status_code == case["expected_status"]
+class TestQueryPolicy:
 
-    @pytest.mark.parametrize("case", load_user_data()["user_info_data"])
-    def test_get_user_info(self, case, prod_headers):
+    @pytest.mark.parametrize("case", load_user_data()["query_policy_data"])
+    def test_query_policy(self, case, prod_headers):
         """测试获取用户信息接口"""
-        user_api = UserAPI(base_url=config.CONFIG["test_env"]["base_url"])
-        response = user_api.get_user_info(
-            user_id=case["user_id"],
+        query = UserAPI(base_url=config.CONFIG["test_env"]["base_url"])
+        response = query.query_policy(
+            pageNumber=case["pageNumber"],
+            pageSize=case["pageSize"],
             headers=prod_headers
         ).execute()
-        assert response.status_code == case["expected_status"]
+        assert response.status_code == 200
