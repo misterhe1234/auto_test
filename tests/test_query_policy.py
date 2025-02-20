@@ -28,7 +28,7 @@ from conftest import prod_headers
 
 # 从 YAML 文件加载测试数据
 def load_user_data():
-    with open("../data/user_data.yaml", "r") as f:
+    with open("../data/user_data.yaml", encoding='utf-8') as f:
         return yaml.safe_load(f)
 
 class TestQueryPolicy:
@@ -43,3 +43,4 @@ class TestQueryPolicy:
             headers=prod_headers
         ).execute()
         assert response.status_code == 200
+        assert response.json()["code"] == 0
